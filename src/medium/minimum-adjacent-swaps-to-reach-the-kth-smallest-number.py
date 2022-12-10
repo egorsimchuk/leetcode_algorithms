@@ -69,7 +69,7 @@ class Solution:
     def get_wonderful_number(self, sorted_arr, wond_numbers_count, k):
         extra_count = wond_numbers_count - k
         right_part = self.get_biggest_n_combination(sorted_arr[::-1], extra_count)
-        return self.num[: -len(sorted_arr)] + right_part
+        return self.num[: -len(sorted_arr)] + nums_to_string(right_part)
 
     def get_biggest_n_combination(self, sorted_arr_inv, extra_count):
         """
@@ -77,8 +77,8 @@ class Solution:
         Output: '43122'
         """
         if extra_count == 0:
-            return nums_to_string(sorted_arr_inv)
-        combinations_set = {nums_to_string(arr) for arr in itertools.permutations(sorted_arr_inv)}
+            return sorted_arr_inv
+        combinations_set = set(itertools.permutations(sorted_arr_inv))
         return sorted(combinations_set)[-1 - extra_count]
 
     def get_n_swaps(self, to_num_str):
@@ -113,12 +113,16 @@ def nums_to_string(arr):
 
 
 if __name__ == "__main__":
+    import time
+
+    start_time = time.time()
     cases = [
-        ({"num": "32029466933338833", "k": 558}, 9),
-        ({"num": "11112", "k": 4}, 4),
-        ({"num": "059", "k": 5}, 3),
+        ({"num": "5555555555555555555555555555555555555555555555555555555555555555555555555559", "k": 75}, 7),
+        ({"num": "32029466933338833", "k": 558}, 7),
     ]
 
     for kwargs, expected_output in cases:
         output = Solution().getMinSwaps(**kwargs)
         assert expected_output == output
+
+    print(f"Execution time: {round(time.time()-start_time,3)} seconds")
