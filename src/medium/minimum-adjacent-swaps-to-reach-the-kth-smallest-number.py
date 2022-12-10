@@ -2,20 +2,24 @@
 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/description/
 """
 import bisect
-from itertools import combinations
+import itertools
 
 import numpy as np
 
 
 class Solution:
+    def __init__(self):
+        self.num = None
+
     def getMinSwaps(self, num: str, k: int) -> int:
-        wond_numbers_count, sorted_arr = self.get_wonderful_counts(num, k)
+        self.num = num
+        wond_numbers_count, sorted_arr = self.get_wonderful_counts(k)
         wonderful_number = self.get_wonderful_number(sorted_arr, wond_numbers_count, k)
-        res = self.get_n_swaps(num, wonderful_number)
+        res = self.get_n_swaps(wonderful_number)
         return res
 
-    def get_wonderful_counts(self, num, k):
-        reveresed_num = num[::-1]
+    def get_wonderful_counts(self, k):
+        reveresed_num = self.num[::-1]
         wond_numbers = 0
         used_number_pos = 0
         sorted_arr = []
@@ -55,31 +59,63 @@ class Solution:
             b *= self.count_simple_permutations(n)
         return a / b
 
-    def count_simple_permutations(self, len):
-        return np.prod(range(1, len + 1))
+    def count_simple_permutations(self, n):
+        return np.prod(range(1, n + 1))
 
     def get_wonderful_number(self, sorted_arr, wond_numbers_count, k):
         extra_count = wond_numbers_count - k
-        sorted_arr_inv = sorted_arr[::-1]
-        sorted_arr_inv = [4, 3, 2, 2, 1]
-        pos = len(sorted_arr_inv) - 1
-        wonderful_numbers = []
-        while True:
-            sorted_arr_inv[pos]
-            right_part = sorted_arr_inv[pos + 1:]
-            if len(right_part) == 0:
-                pos -= 1
-                continue
-            argmax = pos + 1 + np.argmax(right_part)
-            sorted_arr_inv[pos], sorted_arr_inv[pos + 1] = sorted_arr_inv[argmax]
-        return
+        right_part = self.get_biggest_n_combination(sorted_arr[::-1], extra_count)
+        return self.num[: -len(sorted_arr)] + right_part
 
-    def get_n_swaps(self, from_num, to_num):
-        return
+    def get_biggest_n_combination(self, sorted_arr_inv, extra_count):
+        """
+        Input: sorted_arr_inv = [4, 3, 2, 2, 1], extra_count = 2
+        Output: '43122'
+        """
+        if extra_count == 0:
+            return nums_to_string(sorted_arr_inv)
+        first_digit = sorted_arr_inv.pop(0)
+        combinations_set = {nums_to_string(arr) for arr in itertools.permutations(sorted_arr_inv)}
+        return str(first_digit) + sorted(combinations_set)[-1 - extra_count]
+
+    def get_n_swaps(self, to_num_str):
+        """Get minimal number swaps from self.num to to_num"""
+        from_num = list(self.num)
+        to_num = list(to_num_str)
+        cursor = 0
+        n_swaps = 0
+        while cursor < len(to_num):
+            if from_num[cursor] == to_num[cursor]:
+                cursor += 1
+            else:
+                nearest_pos = self.get_nearest_right_pos(from_num, to_num[cursor], cursor)
+                self.swap_digits(from_num, nearest_pos, cursor)
+                n_swaps += nearest_pos - cursor
+                cursor += 1
+        if from_num != to_num:
+            raise ValueError(f"Numbers should be equall, got {from_num}, {to_num}")
+        return n_swaps
+
+    def get_nearest_right_pos(self, number, digit, cursor):
+        return cursor + np.argmax(np.asarray(number[cursor:]) == digit)
+
+    def swap_digits(self, number, pos_1, pos_2):
+        if pos_2 >= pos_1:
+            raise ValueError("pos_1 should be right to pos_2")
+        return number.insert(pos_2, number.pop(pos_1))
 
 
-if __name__ == '__main__':
-    num = "5489355142"
-    k = 3
-    res = Solution().getMinSwaps(num, k)
-    assert res == 4
+def nums_to_string(arr):
+    return "".join(np.asarray(arr, dtype="str"))
+
+
+if __name__ == "__main__":
+    cases = [
+        ({"num": "6387706", "k": 111}, 4),
+        ({"num": "11112", "k": 4}, 4),
+        ({"num": "059", "k": 5}, 3),
+    ]
+
+    for kwargs, expected_output in cases:
+        output = Solution().getMinSwaps(**kwargs)
+        assert expected_output == output

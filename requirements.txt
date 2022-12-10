@@ -1,2 +1,8 @@
 numpy
 pandas
+brunette
+isort
+autopep8
+autoflake
+pylint
+flake8
