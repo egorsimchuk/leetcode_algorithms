@@ -33,6 +33,10 @@ class Solution:
                 continue
 
             # fetch sorted arr from new inserted to max (last)
+            # Imagine we had [0 1 3 3 5] sorted_arr with new inserted value 1.
+            # It means that it gave us a lot of new possibilities how to build wonderful number
+            # We are trying to set bigger digits in old place of 1 one by one and count permutations,
+            # we know that such number are bigger that with old 1 position
             while sorted_arr_pos < len_sorted_arr:
                 fetched_value = sorted_arr[sorted_arr_pos]
                 wond_numbers += self.count_permutations(sorted_arr, sorted_arr_pos)
@@ -74,9 +78,8 @@ class Solution:
         """
         if extra_count == 0:
             return nums_to_string(sorted_arr_inv)
-        first_digit = sorted_arr_inv.pop(0)
         combinations_set = {nums_to_string(arr) for arr in itertools.permutations(sorted_arr_inv)}
-        return str(first_digit) + sorted(combinations_set)[-1 - extra_count]
+        return sorted(combinations_set)[-1 - extra_count]
 
     def get_n_swaps(self, to_num_str):
         """Get minimal number swaps from self.num to to_num"""
@@ -111,7 +114,7 @@ def nums_to_string(arr):
 
 if __name__ == "__main__":
     cases = [
-        ({"num": "6387706", "k": 111}, 4),
+        ({"num": "32029466933338833", "k": 558}, 9),
         ({"num": "11112", "k": 4}, 4),
         ({"num": "059", "k": 5}, 3),
     ]
