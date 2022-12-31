@@ -6,3 +6,4 @@ autopep8
 autoflake
 pylint
 flake8
+loguru
