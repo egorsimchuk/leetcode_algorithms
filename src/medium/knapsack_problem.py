@@ -11,12 +11,7 @@ class Solution:
         self.num = None
 
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        weights = np.stack(
-            (
-                np.array([s.count("0") for s in strs], dtype=int),
-                np.array([s.count("1") for s in strs], dtype=int),
-            )
-        ).T
+        weights = [[s.count("0"), s.count("1")] for s in strs]
         matrix = self.get_matrix2(None, weights, (m, n))
         print(f"weights:\n{weights}")
         print(f"matrix:\n{matrix}")
