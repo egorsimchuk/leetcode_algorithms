@@ -12,12 +12,12 @@ class Solution:
 
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
         weights = [[s.count("0"), s.count("1")] for s in strs]
-        matrix = self.get_matrix2(None, weights, (m, n))
+        matrix = self.get_matrix2(weights, (m, n))
         print(f"weights:\n{weights}")
         print(f"matrix:\n{matrix}")
         return matrix[-1, -1]
 
-    def get_matrix2(self, scores, weights, capacity):
+    def get_matrix2(self, weights, capacity):
         matrix_shape = [c + 1 for c in capacity]
         matrix = np.zeros(matrix_shape, dtype=int)
         for a, b in weights:

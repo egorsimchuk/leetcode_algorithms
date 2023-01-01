@@ -1,3 +1,4 @@
+""" Exercise from https://habr.com/ru/company/yandex/blog/340784/ """
 import time
 
 import numpy as np
@@ -23,8 +24,7 @@ class Solution:
         vas_sum += vas_card
         if pet_sum < vas_sum:
             return "Vasya"
-        else:
-            return "Petya"
+        return "Petya"
 
 
 if __name__ == "__main__":

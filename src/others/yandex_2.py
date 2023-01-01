@@ -1,3 +1,4 @@
+""" Exercise from https://habr.com/ru/company/yandex/blog/340784/ """
 import time
 
 import numpy as np
