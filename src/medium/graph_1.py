@@ -1,5 +1,5 @@
 """
-https://leetcode.com/problems/ones-and-zeroes/description/
+https://leetcode.com/problems/path-with-minimum-effort
 Used Dijkstra’s Shortest Path Algorithm https://www.youtube.com/watch?v=pVfj6mxhdMw
 """
 from typing import List
