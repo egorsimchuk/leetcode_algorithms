@@ -67,7 +67,7 @@ class Solution:
         res = np.prod(range(1, n + 1))
         if res == 0:
             # too many combinations np.prod returns 0
-            # TODO its impossible to calculate all possible combinations with huge n. Input constraints 1 <= k <= 1000,
+            # TOFIX its impossible to calculate all possible combinations with huge n. Input constraints 1 <= k <= 1000,
             # so it's better to try sorted first permutations instead calculating all combinations
             return 1
         return res
