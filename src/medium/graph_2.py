@@ -1,6 +1,6 @@
 """
 https://leetcode.com/problems/cheapest-flights-within-k-stops
-Used Dijkstra’s Shortest Path Algorithm https://www.youtube.com/watch?v=pVfj6mxhdMw
+Used Dijkstra’s Shortest Path Algorithm https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue
 """
 import collections
 import heapq
