@@ -2,9 +2,9 @@ SHELL := /bin/bash
 SRC_DIR = "src"
 
 format:
-	brunette ${SRC_DIR}
 	isort ${SRC_DIR}
 	autopep8 --in-place --recursive ${SRC_DIR}
+	brunette ${SRC_DIR}
 	autoflake --recursive --in-place --remove-all-unused-imports ${SRC_DIR}
 
 lint:
