@@ -22,7 +22,7 @@ class Solution:
         if req_dict == curr_dict:
             res.append(0)
 
-        for sym in s[len(p) :]:  # noqa: E203
+        for sym in s[len(p) :]:
             self.add_to_dict(curr_dict, sym)
             curr_dict[s[left]] -= 1
             if curr_dict[s[left]] == 0:
