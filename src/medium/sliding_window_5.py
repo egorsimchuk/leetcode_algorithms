@@ -4,6 +4,8 @@ https://leetcode.com/problems/sliding-window-maximum/
 from collections import deque
 from typing import List
 
+from src.utils import Timer
+
 
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -21,16 +23,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(nums=[1, 3, -2, 0, -1, 3, 6, 7], k=3), [3, 3, 0, 3, 6, 7]),
         (dict(nums=[1], k=1), [1]),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().maxSlidingWindow(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

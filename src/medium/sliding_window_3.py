@@ -1,6 +1,7 @@
 """
 https://leetcode.com/problems/longest-repeating-character-replacement/
 """
+from src.utils import Timer
 
 
 class Solution:
@@ -33,16 +34,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(s="AABABBBA", k=1), 5),
         (dict(s="ABAB", k=2), 4),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().characterReplacement(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

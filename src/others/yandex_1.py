@@ -1,7 +1,7 @@
 """ Exercise from https://habr.com/ru/company/yandex/blog/340784/ """
-import time
-
 import numpy as np
+
+from src.utils import Timer
 
 
 class Solution:
@@ -28,15 +28,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         ({"cards": "1 2 3"}, "Petya"),
         ({"cards": "1 4 2"}, "Vasya"),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().execute(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time()-start_time,3)} seconds")
+    timer.calc_time()

@@ -1,7 +1,8 @@
 """ Exercise from https://habr.com/ru/company/yandex/blog/340784/ """
-import time
 
 import numpy as np
+
+from src.utils import Timer
 
 
 class Solution:
@@ -21,8 +22,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-
-    start_time = time.time()
+    timer = Timer()
     output = Solution().execute()
     assert output == 61
-    print(f"Execution time: {round(time.time()-start_time,3)} seconds")
+    timer.calc_time()

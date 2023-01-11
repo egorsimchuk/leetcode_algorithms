@@ -1,6 +1,7 @@
 """
 https://leetcode.com/problems/minimum-window-substring/
 """
+from src.utils import Timer
 
 
 class Solution:
@@ -53,9 +54,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(s="aabbbbbcdd", t="abcdd"), "abbbbbcdd"),
         (dict(s="ADOBECODEBANC", t="ABC"), "BANC"),
@@ -65,5 +64,4 @@ if __name__ == "__main__":
     for kwargs, expected_output in cases:
         output = Solution().minWindow(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

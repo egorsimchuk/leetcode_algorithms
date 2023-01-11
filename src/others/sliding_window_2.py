@@ -1,8 +1,9 @@
 """ Exercise from https://www.youtube.com/watch?v=Z0iT7BZruYs&"""
-import time
 from typing import List
 
 import numpy as np
+
+from src.utils import Timer
 
 
 class Solution:
@@ -25,8 +26,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (
             {
@@ -45,9 +45,7 @@ if __name__ == "__main__":
             1995,
         ),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().execute(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

@@ -6,6 +6,8 @@ from typing import List
 
 import numpy as np
 
+from src.utils import Timer
+
 
 class Solution:
     def __init__(self):
@@ -55,17 +57,13 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         ({"heights": [[1, 2, 2], [3, 8, 2], [5, 3, 5]]}, 2),
         ({"heights": [[1, 2, 2], [3, 8, 2], [5, 3, 5]]}, 2),
         ({"heights": [[1, 2, 3], [3, 8, 4], [5, 3, 5]]}, 1),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().minimumEffortPath(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

@@ -5,6 +5,8 @@ from typing import List
 
 import numpy as np
 
+from src.utils import Timer
+
 
 class Solution:
     def __init__(self):
@@ -28,15 +30,11 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         ({"strs": ["10", "0001", "111001", "1", "0"], "m": 5, "n": 3}, 4),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().findMaxForm(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time()-start_time,3)} seconds")
+    timer.calc_time()

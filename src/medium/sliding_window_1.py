@@ -2,6 +2,8 @@
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 """
 
+from src.utils import Timer
+
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -20,15 +22,11 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(s="abcabcbb"), 3),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().lengthOfLongestSubstring(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

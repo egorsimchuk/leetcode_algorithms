@@ -6,6 +6,8 @@ import collections
 import heapq
 from typing import List
 
+from src.utils import Timer
+
 
 class Solution:
     def findCheapestPrice(self, flights: List[List[int]], src: int, dst: int, k: int) -> int:
@@ -32,16 +34,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(flights=[[0, 1, 100], [1, 2, 100], [2, 0, 100], [1, 3, 600], [2, 3, 200]], src=0, dst=3, k=2), 400),
         (dict(flights=[[0, 1, 1], [0, 2, 5], [1, 2, 1], [2, 3, 1]], src=0, dst=3, k=1), 6),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().findCheapestPrice(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()

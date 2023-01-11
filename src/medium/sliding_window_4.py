@@ -3,6 +3,8 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string
 """
 from typing import List
 
+from src.utils import Timer
+
 
 class Solution:
     def add_to_dict(self, d, letter):
@@ -35,16 +37,12 @@ class Solution:
 
 
 if __name__ == "__main__":
-    import time
-
-    start_time = time.time()
+    timer = Timer()
     cases = [
         (dict(s="aaaaaaaaaa", p="aaaaaaaaaaaaa"), []),
         (dict(s="cbaebabacd", p="abc"), [0, 6]),
     ]
-
     for kwargs, expected_output in cases:
         output = Solution().findAnagrams(**kwargs)
         assert expected_output == output
-
-    print(f"Execution time: {round(time.time() - start_time, 3)} seconds")
+    timer.calc_time()
