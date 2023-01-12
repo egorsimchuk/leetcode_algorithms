@@ -8,4 +8,4 @@ class Timer:
         self._nround = nround
 
     def calc_time(self):
-        print(f"Execution time: {round(time.time() - self.start_time, self._nround)} seconds")
+        print(f"Execution time: {round(time() - self.start_time, self._nround)} seconds")
