@@ -1,5 +1,5 @@
 """
-https://leetcode.com/problems/ones-and-zeroes/description/
+https://leetcode.com/problems/ones-and-zeroes
 """
 from typing import List
 

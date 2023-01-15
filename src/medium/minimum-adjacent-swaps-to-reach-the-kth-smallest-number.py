@@ -1,5 +1,5 @@
 """
-https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/description/
+https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number
 """
 import bisect
 import itertools
